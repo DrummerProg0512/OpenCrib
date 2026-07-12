@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>OpenCrib.DB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{d4f6333c-10ae-44d7-bc02-ba5dc3e4a844}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql170DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>OpenCrib.DB</RootNamespace>
+    <AssemblyName>OpenCrib.DB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\UserTypes.sql" />
+    <Build Include="dbo\Tables\UsersAreas.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\UserRoles.sql" />
+    <Build Include="dbo\Tables\UserRelations.sql" />
+    <Build Include="dbo\Tables\UOMs.sql" />
+    <Build Include="dbo\Tables\TransactionStatusHistory.sql" />
+    <Build Include="dbo\Tables\TransactionStatus.sql" />
+    <Build Include="dbo\Tables\TransactionParts.sql" />
+    <Build Include="dbo\Tables\TransactionHistory.sql" />
+    <Build Include="dbo\Tables\TransactionAttachments.sql" />
+    <Build Include="dbo\Tables\TransactionAssets.sql" />
+    <Build Include="dbo\Tables\StorageLocationTypes.sql" />
+    <Build Include="dbo\Tables\StorageLocations.sql" />
+    <Build Include="dbo\Tables\ProvidersVendorsCompanies.sql" />
+    <Build Include="dbo\Tables\PartUsageTypes.sql" />
+    <Build Include="dbo\Tables\PartTypeCategory.sql" />
+    <Build Include="dbo\Tables\PartTrackingTypes.sql" />
+    <Build Include="dbo\Tables\PartStorageLocations.sql" />
+    <Build Include="dbo\Tables\PartsItems.sql" />
+    <Build Include="dbo\Tables\PartItemsAttachments.sql" />
+    <Build Include="dbo\Tables\PartCostHistory.sql" />
+    <Build Include="dbo\Tables\PartAssetsAttachments.sql" />
+    <Build Include="dbo\Tables\PartAssets.sql" />
+    <Build Include="dbo\Tables\CurrencyCodes.sql" />
+    <Build Include="dbo\Tables\AreaLocationTypes.sql" />
+    <Build Include="dbo\Tables\AreaLocations.sql" />
+    <Build Include="dbo\Tables\AreaLocationRelations.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserTypes_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserTypes_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserTypes_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsersAreas_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsersAreas_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UsersAreas_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Users_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Users_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_Users_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserRoles_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserRoles_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserRoles_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserRelations_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserRelations_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UserRelations_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UOMs_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UOMs_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_UOMs_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionStatusHistory_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionStatusHistory_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionStatusHistory_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionStatus_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionStatus_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionStatus_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionParts_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionParts_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionParts_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionHistory_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionHistory_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionHistory_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionAttachments_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionAttachments_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionAttachments_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionAssets_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionAssets_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_TransactionAssets_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_StorageLocationTypes_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_StorageLocationTypes_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_StorageLocationTypes_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_StorageLocations_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_StorageLocations_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_StorageLocations_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ProvidersVendorsCompanies_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ProvidersVendorsCompanies_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_ProvidersVendorsCompanies_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartUsageTypes_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartUsageTypes_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartUsageTypes_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartTypeCategory_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartTypeCategory_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartTypeCategory_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartTrackingTypes_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartTrackingTypes_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartTrackingTypes_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartStorageLocations_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartStorageLocations_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartStorageLocations_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartsItems_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartsItems_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartsItems_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartItemsAttachments_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartItemsAttachments_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartItemsAttachments_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartCostHistory_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartCostHistory_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartCostHistory_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartAssetsAttachments_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartAssetsAttachments_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartAssetsAttachments_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartAssets_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartAssets_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_PartAssets_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_CurrencyCodes_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_CurrencyCodes_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_CurrencyCodes_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocationTypes_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocationTypes_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocationTypes_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocations_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocations_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocations_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocationRelations_Update.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocationRelations_Select.sql" />
+    <Build Include="dbo\Stored Procedures\usp_AreaLocationRelations_Insert.sql" />
+  </ItemGroup>
+</Project>

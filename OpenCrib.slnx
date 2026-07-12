@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="OpenCrib.DB/OpenCrib.DB.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
