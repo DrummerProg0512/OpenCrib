@@ -5,17 +5,29 @@ namespace OpenCrib.Models.Requests
     public abstract class UserBaseRequest
     {
         [Required]
-        [StringLength(200)]
+        [StringLength(150)]
         public string? Username { get; set; }
-        [StringLength(200)]
-        public string? FirstName { get; set; }
-        [StringLength(200)]
-        public string? LastName { get; set; }
-        [StringLength(320)]
-        public string? Email { get; set; }
-        public bool IsActive { get; set; } = true;
-        [Required]
+
+        [StringLength(150)]
+        public string? UserLastName { get; set; }
+
+        [StringLength(50)]
+        public string? UserCode { get; set; }
+
+        [StringLength(500)]
+        public string? EncPassword { get; set; }
+
+        [StringLength(250)]
+        public string? UserEmail { get; set; }
+
+        [Required]
         [Range(1, int.MaxValue)]
-        public int UpdatedBy { get; set; }
+        public int UserRoleID { get; set; }
+
+        [Required]
+        [Range(1, int.MaxValue)]
+        public int UserTypeID { get; set; }
+
+        public bool UserActive { get; set; } = true;
     }
 }
