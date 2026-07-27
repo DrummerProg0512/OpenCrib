@@ -4,4 +4,5 @@
     <Deploy />
   </Project>
   <Project Path="OpenCrib.Models/OpenCrib.Models.csproj" Id="4fa91d7a-8787-4f02-ab69-c082aa7971af" />
+  <Project Path="OpenCrib.Services/OpenCrib.Services.csproj" Id="8d7c2442-da24-4d29-a90e-0d2f61e9e733" />
 </Solution>
