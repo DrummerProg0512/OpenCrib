@@ -4,16 +4,14 @@ using Microsoft.Data.SqlClient;
 using OpenCrib.Models.DTOs;
 using OpenCrib.Models.Requests;
 using OpenCrib.Models.Responses;
-using System;
-using System.Collections.Generic;
+using OpenCrib.Services.ICRUD;
 using System.Data;
 using System.Data.Common;
-using System.Text;
 
 
 namespace OpenCrib.Services.CRUD
 {
-    public sealed class CRUD_AreaLocations
+    public sealed class CRUD_AreaLocations : ICRUD_AreaLocations
     {
         private readonly IMapper _mapper;
 
@@ -150,7 +148,77 @@ namespace OpenCrib.Services.CRUD
         #endregion
 
         #region Update
+        public async Task<AreaLocationUpdateResponse> AreaLocationUpdate(AreaLocationUpdateRequest request)
+        {
+            var response = new AreaLocationUpdateResponse();
+            try
+            {
+                if (request != null)
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@AreaLocationID", request.AreaLocationID, DbType.Int32);
+                    parameters.Add("@AreaLocationTypeID", request.AreaLocationTypeID, DbType.Int32);
+                    parameters.Add("@AreaLocationName", request.AreaLocationName, DbType.String);
+                    parameters.Add("@AreaLocationCode", request.AreaLocationCode, DbType.String);
+                    parameters.Add("@AreaLocationDescription", request.AreaLocationDescription, DbType.String);
+                    parameters.Add("@AreaLocationActive", request.AreaLocationActive, DbType.Boolean);
+                    parameters.Add("@UpdatedBy", request.UpdatedBy, DbType.Int32);
+                    parameters.Add("@RowsAffected", DbType.Int32, direction: ParameterDirection.Output);
 
+                    using (var conn = new SqlConnection(Connections.Conn.OpenCribDB))
+                    {
+                        await conn.OpenAsync();
+                        using (var transaction = await conn.BeginTransactionAsync())
+                        {
+                            try
+                            {
+                                var result = await conn.ExecuteAsync("[dbo].[usp_AreaLocations_Update]", parameters, commandType: CommandType.StoredProcedure);
+                                response.RowsAffected = parameters.Get<int>("@RowsAffected");
+                                response.IsSuccessful = result > 0;
+                                await transaction.CommitAsync();
+                            }
+                            catch (Exception ex)
+                            {
+                                await transaction.RollbackAsync();
+                                response.IsSuccessful = false;
+                                response.exMessage = ex.Message;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    response.IsSuccessful = false;
+                    response.exMessage = "Request is null.";
+                }
+            }
+            catch (SqlException ex)
+            {
+                response.IsSuccessful = false;
+                response.exMessage = $"SQL Error: {ex.Message}";
+            }
+            catch (TimeoutException ex)
+            {
+                response.IsSuccessful = false;
+                response.exMessage = $"Timeout Error: {ex.Message}";
+            }
+            catch (InvalidOperationException ex)
+            {
+                response.IsSuccessful = false;
+                response.exMessage = $"Invalid Operation: {ex.Message}";
+            }
+            catch (DbException ex)
+            {
+                response.IsSuccessful = false;
+                response.exMessage = $"Database Error: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccessful = false;
+                response.exMessage = $"General Error: {ex.Message}";
+            }
+            return response;
+        }
         #endregion
 
     }
