@@ -4,10 +4,10 @@ using OpenCrib.Models.Responses;
 
 namespace OpenCrib.Models.MappingProfiles
 {
-    public sealed class AreaLocationMapProfile : Profile
+    public sealed class AreaLocationsRelationMapProfile : Profile
     {
-        public AreaLocationMapProfile()
-        {
+        public AreaLocationsRelationMapProfile() 
+        { 
             CreateMap<AreaLocationInsertRequest, AreaLocationInsertResponse>()
                 .ForMember(dest => dest.IsSuccessful, opt => opt.Ignore())
                 .ForMember(dest => dest.exMessage, opt => opt.Ignore())
