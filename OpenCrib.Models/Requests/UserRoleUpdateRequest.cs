@@ -7,10 +7,13 @@ namespace OpenCrib.Models.Requests
         [Required]
         [Range(1, int.MaxValue)]
         public int RoleID { get; set; }
-        [StringLength(200)]
+
+        [StringLength(200)]
         public string? Name { get; set; }
-        [StringLength(2000)]
+
+        [StringLength(2000)]
         public string? Description { get; set; }
-        public int? UpdatedBy { get; set; }
+
+        public int? UpdatedBy { get; set; }
     }
 }
