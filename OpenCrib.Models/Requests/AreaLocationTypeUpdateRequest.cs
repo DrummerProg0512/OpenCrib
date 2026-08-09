@@ -11,12 +11,6 @@ namespace OpenCrib.Models.Requests
         [StringLength(250, ErrorMessage = "Name cannot exceed 250 characters.")]
         public string? AreaLocationTypeName { get; set; }
 
-        [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]
-        public string? AreaLocationTypeDescription { get; set; }
-
         public bool? AreaLocationTypeActive { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "Updated by user ID must be greater than 0 when provided.")]
-        public int? UpdatedBy { get; set; }
     }
 }
