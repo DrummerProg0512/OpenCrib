@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ICRUD\" />
+    <Compile Remove="ICRUD\**" />
+    <EmbeddedResource Remove="ICRUD\**" />
+    <None Remove="ICRUD\**" />
   </ItemGroup>
 
   <ItemGroup>
