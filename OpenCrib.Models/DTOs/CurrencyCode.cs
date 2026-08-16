@@ -10,4 +10,4 @@ namespace OpenCrib.Models.DTOs
         public int UpdatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
     }
-}}
+}
