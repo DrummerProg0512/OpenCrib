@@ -25,7 +25,8 @@ namespace OpenCrib.Models.Requests
 
         public int? AssetCondiftion { get; set; }
         public bool? IsActive { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "UpdatedBy must be greater than 0 when provided.")]
+
+        [Range(1, int.MaxValue, ErrorMessage = "UpdatedBy must be greater than 0 when provided.")]
         public int? UpdatedBy { get; set; }
     }
 }
