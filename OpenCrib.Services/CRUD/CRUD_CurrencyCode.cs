@@ -22,7 +22,7 @@ namespace OpenCrib.Services.CRUD
         #region Create
         public async Task<CurrencyCodeInsertResponse> CurrencyCodeInsert(CurrencyCodeInsertRequest request)
         {
-            var response = new CurrencyCodeInsertResponse
+            var response = new CurrencyCodeInsertResponse();
             try
             {
                 if (request != null)
@@ -30,8 +30,34 @@ namespace OpenCrib.Services.CRUD
                     response = _mapper.Map<CurrencyCodeInsertResponse>(request);
 
                     var parameters = new DynamicParameters();
-                    parameters.Add("@CountryName", request.CurrencyName, DbType.String, ParameterDirection.Input);
-                    //Check DTOs, Request and Response Models for stored procedures for Currency Code (Fields do not match)
+                    parameters.Add("@CountryName", request.CountryName, DbType.String, ParameterDirection.Input);
+                    parameters.Add("@CurrencyName", request.CurrencyName, DbType.String, ParameterDirection.Input);
+                    parameters.Add("@CurrencyCode", request.CurrencyCode, DbType.String, ParameterDirection.Input);
+                    parameters.Add("@IsDefaultCurrency", request.IsDefaultCurrency, DbType.Boolean, ParameterDirection.Input);
+                    parameters.Add("@UpdatedBy", request.UpdatedBy, DbType.Int32, ParameterDirection.Input);
+                    parameters.Add("@CurrencyCodeID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    using (var conn = new SqlConnection(Connections.Conn.OpenCribDB))
+                    {
+                        await conn.OpenAsync();
+
+                        using (var transaction = await conn.BeginTransactionAsync())
+                        {
+                            try
+                            {
+                                var result = await conn.ExecuteAsync("[dbo].[usp_CurrencyCodes_Insert]", parameters, transaction, commandType: CommandType.StoredProcedure);
+                                response.NewCurrencyCodeID = parameters.Get<int>("@CurrencyCodeID");
+                                response.IsSuccessful = true;
+                                await transaction.CommitAsync();
+                            }
+                            catch (Exception ex)
+                            {
+                                await transaction.RollbackAsync();
+                                response.IsSuccessful = false;
+                                response.exMessage = ex.Message;
+                            }
+                        }
+                    }
                 }
                 else
                 {

@@ -4,6 +4,6 @@ namespace OpenCrib.Models.Responses
 {
     public sealed class CurrencyCodeSelectResponse : BaseResponse
     {
-        public List<CurrencyCode> Codes { get; set; } = new List<CurrencyCode>();
+        public List<CurrencyCodeDTO> Codes { get; set; } = new List<CurrencyCodeDTO>();
     }
 }
